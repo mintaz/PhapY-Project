@@ -186,6 +186,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BenhNhan.cs" />
+    <Compile Include="Model\ChucVu.cs" />
+    <Compile Include="Model\HinhAnh.cs" />
+    <Compile Include="Model\HoSo.cs" />
+    <Compile Include="Model\LoaiHoSo.cs" />
+    <Compile Include="Model\NhanVien.cs" />
+    <Compile Include="Model\PhuLucHoSo.cs" />
+    <Compile Include="Model\TrinhDo.cs" />
     <Compile Include="PhapYConsts.cs" />
     <Compile Include="PhapYCoreModule.cs" />
     <Compile Include="AppVersionHelper.cs" />

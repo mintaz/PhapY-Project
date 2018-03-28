@@ -3,6 +3,8 @@ using Abp.Zero.EntityFramework;
 using PhapY.Authorization.Roles;
 using PhapY.Authorization.Users;
 using PhapY.MultiTenancy;
+using PhapY.Model;
+using System.Data.Entity;
 
 namespace PhapY.EntityFramework
 {
@@ -18,6 +20,33 @@ namespace PhapY.EntityFramework
         public PhapYDbContext()
             : base("Default")
         {
+
+        }
+        public DbSet<BenhNhan> BenhNhans { get; set; }
+        public DbSet<ChucVu> ChucVus { get; set; }
+        public DbSet<HinhAnh> HinhAnhs { get; set; }
+        public DbSet<HoSo> HoSos { get; set; }
+        public DbSet<LoaiHoSo> LoaiHoSos { get; set; }
+        public DbSet<NhanVien> NhanViens { get; set; }
+        public DbSet<PhuLucHoSo> PhuLucHoSos { get; set; }
+        public DbSet<TrinhDo> TrinhDos { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<NhanVien>()
+                .HasMany<HoSo>(s => s.Hosos)
+                .WithMany(c => c.NhanViens)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("NhanVienId");
+                    cs.MapRightKey("HoSoId");
+                    cs.ToTable("NhanVienHoSo");
+                });
+            modelBuilder.Entity<NhanVien>()
+                .HasOptional(x => x.TaiKhoan)
+                .WithMany()
+                .HasForeignKey(x => x.TaiKhoanId);
+
 
         }
 
