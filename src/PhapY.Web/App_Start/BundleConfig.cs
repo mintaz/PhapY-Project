@@ -22,7 +22,12 @@ namespace PhapY.Web
                     .Include("~/css/style.css", new CssRewriteUrlTransform())
                     .Include("~/Views/Account/_Layout.css", new CssRewriteUrlTransform())
             );
-
+            bundles.Add(
+                new StyleBundle("~/Bundles/kendo/css")
+                    .Include("~/Content/kendo/2017.2.504/kendo.common-bootstrap.min.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/kendo/2017.2.504/kendo.bootstrap.min.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/kendo/2017.2.504/kendo.bootstrap.mobile.min.css", new CssRewriteUrlTransform())
+            );
             bundles.Add(
                 new ScriptBundle("~/Bundles/account-vendor/js/bottom")
                     .Include(
@@ -47,7 +52,14 @@ namespace PhapY.Web
                         "~/js/main.js"
                     )
             );
-
+            bundles.Add(
+                new ScriptBundle("~/Bundles/js/kendo")
+                    .Include(
+                        "~/Scripts/kendo/2017.2.504/kendo.all.min.js",
+                        "~/Scripts/kendo/2017.2.504/kendo.aspnetmvc.min.js",
+                        "~/Scripts/kendo/2017.2.504/cultures/kendo.culture.vi-VN.min.js"
+                    )
+            );
             //VENDOR RESOURCES
 
             //~/Bundles/vendor/css
@@ -95,9 +107,29 @@ namespace PhapY.Web
                         "~/js/admin.js",
                         "~/js/main.js",
                         "~/Views/Shared/_Layout.js",
-                        "~/lib/signalr/jquery.signalR.js"
+                        "~/lib/signalr/jquery.signalR.js",
+                         "~/lib/Scripts/consts.js",
+                        "~/lib/Scripts/helpers.js",
+                        "~/lib/Scripts/appUserNotificationHelper.js",
+                        "~/lib/Scripts/jquery-custom.js",
+                        "~/lib/Scripts/ModalManager.js"
+
                     )
                 );
+            bundles.Add(
+                new ScriptBundle("~/Bundles/js/jquery")
+                    .Include(
+                        "~/lib/jquery/dist/jquery.js"
+                    )
+                );
+            bundles.Add(
+                new ScriptBundle("~/Bundles/jqueryval")
+                    .Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/jquery.validate.min.js",
+                        "~/Scripts/jquery.validate.unobtrusive.min.js"
+                    )
+            );
 
             //Home-Index Bundles
             bundles.Add(

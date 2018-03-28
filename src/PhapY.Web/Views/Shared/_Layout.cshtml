@@ -2,6 +2,7 @@
 @using System.Web.Optimization
 @using Abp.Configuration
 @using Abp.Timing
+@using Kendo.Mvc.UI
 @using Abp.Web.Mvc.Extensions
 @using PhapY
 @using PhapY.Configuration
@@ -24,7 +25,7 @@
     <title>PhapY</title>
 
     @Styles.Render("~/Bundles/vendor/css")
-
+    @Styles.Render("~/Bundles/kendo/css")
     <!-- View specific styles -->
     @RenderSection("styles", required: false)
 
@@ -115,7 +116,7 @@
     </section>
 
     @Scripts.Render("~/Bundles/vendor/js/bottom")
-
+    @Scripts.Render("~/Bundles/kendo/js/bottom")
     <script>
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
@@ -131,5 +132,6 @@
 
     <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
+    @Html.Kendo().DeferredScripts()
 </body>
 </html>
