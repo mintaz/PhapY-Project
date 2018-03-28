@@ -24,5 +24,6 @@ namespace PhapY.Roles.Dto
         public bool IsStatic { get; set; }
 
         public List<string> Permissions { get; set; }
+        public bool IsAssigned { get; set; }
     }
 }

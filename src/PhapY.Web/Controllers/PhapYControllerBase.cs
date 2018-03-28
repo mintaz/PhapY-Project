@@ -2,6 +2,7 @@
 using Abp.UI;
 using Abp.Web.Mvc.Controllers;
 using Microsoft.AspNet.Identity;
+using PhapY.Authorization.Users;
 
 namespace PhapY.Web.Controllers
 {
@@ -10,6 +11,7 @@ namespace PhapY.Web.Controllers
     /// </summary>
     public abstract class PhapYControllerBase : AbpController
     {
+        public UserManager UserManager { get; set; }
         protected PhapYControllerBase()
         {
             LocalizationSourceName = PhapYConsts.LocalizationSourceName;

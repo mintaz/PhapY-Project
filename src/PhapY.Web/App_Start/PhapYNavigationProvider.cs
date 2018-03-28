@@ -23,7 +23,17 @@ namespace PhapY.Web
                         icon: "home",
                         requiresAuthentication: true
                     )
-                ).AddItem(
+                )
+                .AddItem(
+                        new MenuItemDefinition(
+                        PageNames.NhanViens,
+                        L("NhanVien"),
+                        url: "NhanVien",
+                        icon: "person",
+                        requiredPermissionName: PermissionNames.Pages_NhanVien_Read
+                    )
+                )
+                .AddItem(
                     new MenuItemDefinition(
                         PageNames.Tenants,
                         L("Tenants"),
@@ -42,7 +52,7 @@ namespace PhapY.Web
                 ).AddItem(
                     new MenuItemDefinition(
                         PageNames.Roles,
-                        L("Roles"),
+                        L("NhomQuyen"),
                         url: "Roles",
                         icon: "local_offer",
                         requiredPermissionName: PermissionNames.Pages_Roles
@@ -55,7 +65,8 @@ namespace PhapY.Web
                         url: "About",
                         icon: "info"
                     )
-                ).AddItem( //Menu items below is just for demonstration!
+                )
+                .AddItem( //Menu items below is just for demonstration!
                     new MenuItemDefinition(
                         "MultiLevelMenu",
                         L("MultiLevelMenu"),

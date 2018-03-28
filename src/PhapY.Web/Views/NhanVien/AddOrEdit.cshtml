@@ -1,0 +1,106 @@
+﻿@using System.Web.Optimization
+@using Kendo.Mvc.UI
+@model PhapY.NhanVien.Dto.NhanVienDto
+@Scripts.Render("~/Views/NhanVien/AddOrEdit.js")
+<div class="container-fluid">
+    @using (Ajax.BeginForm("", "", null, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        Url = Model.Id > 0 ? "/NhanVien/Edit" : "/NhanVien/Add",
+        OnSuccess = "AddOrEditNhanVienSuccess",
+        OnBegin = "AddOrEditNhanVienBegin"
+    }, new { id = "form-nhanvien", @class = "custom-form" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row col-md-12">
+                    <fieldset>
+                        <legend>Thông tin nhân viên:</legend>
+                        <div class="form-group">
+                            <span class="control-label">Họ tên</span>
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Ngày sinh</span>
+                            @(Html.Kendo().DatePicker()
+                                          .Name("NgaySinh")
+                                          .Format("dd/MM/yyyy")
+                                          .DateInput()
+                                          .Value(Model.NgaySinh)
+                                          .HtmlAttributes(new { style = "width: 100%" })
+                            )
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Địa chỉ</span>
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Số điện thoại</span>
+                            @Html.EditorFor(model => model.SoDt, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Chức vụ</span>
+                            @(Html.Kendo().DropDownList()
+                                          .Name("ChucVuId")
+                                          .DataTextField("TenChucVu")
+                                          .DataValueField("Id")
+                                          .OptionLabel("-- Chọn chức vụ --")
+                                          .BindTo((System.Collections.IEnumerable)ViewBag.DSChucVu)
+                                          .Value(Model.ChucVuId.HasValue ? Model.ChucVuId.ToString() : "")
+                                          .HtmlAttributes(new { style = "width: 100%" })
+                            )
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Bằng cấp</span>
+                            @(Html.Kendo().DropDownList()
+                                          .Name("TrinhDoId")
+                                          .DataTextField("TenTrinhDo")
+                                          .DataValueField("Id")
+                                          .OptionLabel("-- Chọn bằng cấp --")
+                                          .BindTo((System.Collections.IEnumerable)ViewBag.DSTrinhDo)
+                                          .Value(Model.TrinhDoId.HasValue ? Model.TrinhDoId.ToString() : "")
+                                          .HtmlAttributes(new { style = "width: 100%" })
+                            )
+                        </div>
+                        <div class="form-group">
+                            @(Html.Kendo().CheckBox().Name("BsChinh").Checked(Model.BsChinh))
+                            <span class="control-label">Bác sĩ chính</span>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row col-md-12">
+                    <fieldset>
+                        <legend>Tài khoản đăng nhập hệ thống:</legend>
+                        <input type="hidden" id="hdnAccountLoginId" value="@Model.UserId" />
+                        @(Html.Kendo().DropDownList()
+                                      .Name("UserId")
+                                      .DataTextField("UserName")
+                                      .DataValueField("Id")
+                                      .Filter(FilterType.Contains)
+                                      .Height(400)
+                                      .HtmlAttributes(new { style = "width:100%;" })
+                                      .DataSource(source => source
+                                          .Custom()
+                                          .Events(e =>
+                                          {
+                                              e.RequestEnd("AccountLoginEnd");
+                                          })
+                                          .ServerFiltering(false)
+                                          .Transport(transport => transport
+                                              .Read(read =>
+                                              {
+                                                  read.Action("AccountLogin_Read", "Users", new { userId = Model.UserId });
+                                              }))))
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <button id="btn-save-nhan-vien" style="width:70px" class="btn btn-primary pull-right"> <i class="fa fa-floppy-o"></i> Lưu </button>
+            </div>
+        </div>
+    }
+</div>

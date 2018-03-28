@@ -19,11 +19,14 @@
     <text name="Password" value="Password" />
     <text name="RememberMe" value="Ghi nhớ tài khoản" />
     <text name="LogIn" value="Đăng nhập" />
-
+    <text name="Actions" value="Thao tác" />
+    <text name="Edit" value="Sửa" />
+    <text name="Delete" value="Xóa" />
+    <text name="Permissions" value="Danh sách quyền" />
     <text name="LoginFailed" value="Đăng nhập thất bại!" />
 
     <text name="NameSurname" value="Tên họ" />
-    <text name="UserName" value="Tên tài khoản" />
+    <text name="UserName" value="Tên đăng nhập" />
     <text name="Name" value="Tên" />
     <text name="Surname" value="Tên đệm" />
     <text name="EmailAddress" value="Địa chỉ email" />
@@ -32,8 +35,8 @@
     <text name="SavedSuccessfully" value="Lưu thành công" />
     <text name="CreateNewTenant" value="Tạo mới tenant" />
     <text name="AdminEmailAddress" value="Admin email address" />
-    <text name="Save" value="Save" />
-    <text name="Cancel" value="Cancel" />
+    <text name="Save" value="Lưu thay đổi" />
+    <text name="Cancel" value="Hủy" />
     <text name="TenantName_Regex_Description" value="Tên tenant phải có ít nhất 2 ký tự, bắt đầu bằng chữ cái và tiếp tục với chữ, số, dấu gạch ngang hoặc gạch dưới." />
     <text name="DefaultPasswordIs" value="Mật khẩu mặc định là {0}" />
     <text name="CanBeEmptyToLoginAsHost" value="Can be empty to login as host." />
@@ -47,12 +50,24 @@
     <text name="RegisterFormUserNameInvalidMessage">Please dont enter an email address for username.</text>
 
     <text name="DatabaseConnectionString" value="Database connection string" />
-    <text name="Users" value="Users" />
-    <text name="IsActive" value="Is active" />
+    <text name="Users" value="Danh sách tài khoản" />
+    <text name="IsActive" value="Kích hoạt" />
     <text name="FullName" value="Tên đầy đủ" />
-    <text name="CreateNewUser" value="Tạo mới người dùng" />
-    <text name="Yes" value="Yes" />
-    <text name="No" value="No" />
+    <text name="CreateNewUser" value="Tạo mới tài khoản" />
+    <text name="Yes" value="Có" />
+    <text name="No" value="Không" />
     <text name="Optional" value="Optional" />
+    <text name="XemDanhSachNhanVien" value="Xem danh sách nhân viên" />
+    <text name="TaoMoiNhanVien" value="Thêm nhân viên" />
+    <text name="CapNhatNhanVien" value="Sửa thông tin nhân viên" />
+    <text name="XoaNhanVien" value="Xóa thông tin nhân viên" />
+    <text name="NhomQuyen" value="Nhóm Quyền" />
+    <text name="NhanVien" value="Nhân viên" />
+    <text name="TaiKhoanLogin" value="Tài khoản đăng nhập hệ thống" />
+    <text name="Roles" value="Danh sách nhóm người dùng" />
+    <text name="User_Details" value="Thông tin tài khoản" />
+    <text name="User_Roles" value="Tài khoản - Nhóm quyền" />
+    <text name="EditUser" value="Cập nhật thông tin tài khoản" />
+
   </texts>
 </localizationDictionary>

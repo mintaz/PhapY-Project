@@ -2231,6 +2231,14 @@
     <Content Include="lib\raphael\raphael.no-deps.js" />
     <Content Include="lib\raphael\raphael.no-deps.min.js" />
     <Content Include="lib\raphael\webpack.config.js" />
+    <Content Include="lib\Scripts\appUserNotificationHelper.js" />
+    <Content Include="lib\Scripts\cloud-zoom.js" />
+    <Content Include="lib\Scripts\consts.js" />
+    <Content Include="lib\Scripts\helpers.js" />
+    <Content Include="lib\Scripts\jquery-custom.js" />
+    <Content Include="lib\Scripts\jquery.fancybox.pack.js" />
+    <Content Include="lib\Scripts\ModalManager.js" />
+    <Content Include="lib\Scripts\utils.js" />
     <Content Include="lib\signalr\jquery.signalR.js" />
     <Content Include="lib\signalr\jquery.signalR.min.js" />
     <Content Include="lib\spin.js\.gitignore" />
@@ -2782,7 +2790,10 @@
     </Content>
     <Content Include="Views\Account\_TenantChange.js" />
     <Content Include="Views\Account\_TenantChangeModal.js" />
+    <Content Include="Views\Common\_PermissionTree.js" />
     <Content Include="Views\Home\Index.js" />
+    <Content Include="Views\NhanVien\AddOrEdit.js" />
+    <Content Include="Views\NhanVien\Index.js" />
     <Content Include="Views\Roles\Index.js" />
     <Content Include="Views\Roles\_EditRoleModal.js" />
     <Content Include="Views\Shared\_Layout.css" />
@@ -2791,6 +2802,7 @@
     <Content Include="Views\Tenants\_EditTenantModal.js" />
     <Content Include="Views\Users\Index.js" />
     <Content Include="Views\Users\_EditUserModal.js" />
+    <Content Include="Views\Users\_PermissionModal.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2808,6 +2820,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
@@ -2815,6 +2828,7 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\Account\TenantChangeModalViewModel.cs" />
     <Compile Include="Models\Account\TenantChangeViewModel.cs" />
+    <Compile Include="Models\Common\IPermissionsEditViewModel.cs" />
     <Compile Include="Models\Common\Modals\ModalHeaderViewModel.cs" />
     <Compile Include="Models\Layout\RightSideBarViewModel.cs" />
     <Compile Include="Models\Account\LoginFormViewModel.cs" />
@@ -2834,6 +2848,7 @@
     <Compile Include="Models\Roles\RoleListViewModel.cs" />
     <Compile Include="Models\Users\EditUserModalViewModel.cs" />
     <Compile Include="Models\Users\UserListViewModel.cs" />
+    <Compile Include="Models\Users\UserPermissionsEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\PhapYWebViewPageBase.cs" />
     <Compile Include="Views\UrlChecker.cs" />
@@ -2953,6 +2968,12 @@
     <Content Include="Views\Tenants\_EditTenantModal.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\NhanVien\Index.cshtml" />
+    <Content Include="Views\NhanVien\Add.cshtml" />
+    <Content Include="Views\NhanVien\AddOrEdit.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\Users\_PermissionModal.cshtml" />
+    <Content Include="Views\Common\_PermissionTree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

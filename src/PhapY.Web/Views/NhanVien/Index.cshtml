@@ -1,0 +1,104 @@
+﻿@using System.Web.Optimization
+@using Kendo.Mvc.UI
+@using PhapY.Authorization
+@using PhapY.NhanVien.Dto
+@{
+    ViewBag.ActiveMenu = PageNames.NhanViens; //The menu item will be active for this page.
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Views/NhanVien/Index.js")
+@section scripts{
+    <script type="text/javascript">$(document).ready(function () {
+            $('#btn-create-new-nhanVien').click(function (e) {
+                e.preventDefault();
+                var wnd = $("#NhanVienPopup").data("kendoWindow");
+                if (wnd) {
+                    wnd.refresh({
+                        url: "/NhanVien/Add"
+                    });
+                    wnd.title("Thêm mới Nhân Viên");
+                    wnd.center().open();
+                    wnd.maximize();
+                }
+            });
+        });</script>
+}
+<div class="container-fluid">
+    @if (IsGranted(PermissionNames.Pages_NhanVien_Create))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <a id="btn-create-new-nhanVien" class="btn btn-primary pull-right" href="javascript:void(0)"><i class="fa fa-plus"></i> Tạo mới nhân viên</a>
+            </div>
+        </div>
+    }
+    <div class="row margin-top-10">
+        <div class="col-md-12">
+            @(Html.Kendo().Grid<NhanVienDto>()
+                          .Name("nhanvienGrid")
+                          .Deferred()
+                          .Columns(columns =>
+                          {
+                              columns.Bound(c => c.HoTen)
+                                  .Title("Họ tên")
+                                  .Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false).Operator("contains").SuggestionOperator(FilterType.Contains)));
+                              columns.Bound(c => c.SoDt)
+                                  .Title("Số điện thoại")
+                                  .Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false).Operator("contains").SuggestionOperator(FilterType.Contains)));
+                              columns.Bound(c => c.DiaChi)
+                                  .Title("Địa chỉ")
+                                  .Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false).Operator("contains").SuggestionOperator(FilterType.Contains)));
+                              columns.Bound(c => c.NgaySinh)
+                                  .Title("Ngày sinh")
+                                  .Filterable(ftb => ftb.Enabled(false));
+                              columns.Bound(c => c.UserName)
+                                  .Title("Tài khoản")
+                                  .Filterable(ftb => ftb.Cell(cell => cell.ShowOperators(false).Operator("contains").SuggestionOperator(FilterType.Contains)));
+                              if (IsGranted(PermissionNames.Pages_NhanVien_Update) || IsGranted(PermissionNames.Pages_NhanVien_Delete))
+                              {
+                                  columns.Command(command =>
+                                  {
+                                      if (IsGranted(PermissionNames.Pages_NhanVien_Update))
+                                      {
+                                          command.Custom("Cập nhật").Click("editNhanVien");
+                                      }
+                                      if (IsGranted(PermissionNames.Pages_NhanVien_Delete))
+                                      {
+                                          command.Custom("Xóa").Click("deleteNhanVien");
+                                      }
+                                  })
+                                  .Width(110);
+                              }
+                          })
+                          .Scrollable(s => s.Enabled(false))
+                          .Sortable()
+                          .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                          .Pageable(pageable => pageable
+                              .Refresh(true)
+                              .PageSizes(new List<int> { 20, 50, 100 }))
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .PageSize(20)
+                              .Model(model =>
+                              {
+                                  model.Id(p => p.Id);
+                              })
+                              .Read("GetNhanViens", "NhanVien")
+                          )
+            )
+        </div>
+    </div>
+</div>
+@(Html.Kendo().Window().Name("NhanVienPopup")
+          .Title("Distributor Details")
+          .Visible(false)
+          .Deferred()
+          .Modal(true)
+          .Events(e => e
+              .Close("onNhanVienPopupClose")
+              .Open("onNhanVienPopupOpen"))
+          .Draggable(false)
+)

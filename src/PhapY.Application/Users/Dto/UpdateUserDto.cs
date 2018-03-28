@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using Abp.Auditing;
 using PhapY.Authorization.Users;
 
 namespace PhapY.Users.Dto
@@ -29,5 +30,8 @@ namespace PhapY.Users.Dto
         public bool IsActive { get; set; }
 
         public string[] RoleNames { get; set; }
+        [StringLength(AbpUserBase.MaxPlainPasswordLength)]
+        [DisableAuditing]
+        public string Password { get; set; }
     }
 }

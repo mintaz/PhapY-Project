@@ -38,6 +38,10 @@ namespace PhapY
 
                 cfg.CreateMap<CreateUserDto, User>();
                 cfg.CreateMap<CreateUserDto, User>().ForMember(x => x.Roles, opt => opt.Ignore());
+                cfg.CreateMap<User, UpdateUserDto>()
+                    .ForMember(dto => dto.Password, options => options.Ignore())
+                    .ReverseMap()
+                    .ForMember(user => user.Password, options => options.Ignore());
             });
         }
     }

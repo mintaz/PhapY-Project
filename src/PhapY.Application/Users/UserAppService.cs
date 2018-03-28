@@ -6,6 +6,7 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Authorization.Users;
+using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.IdentityFramework;
 using PhapY.Authorization;
@@ -14,20 +15,22 @@ using PhapY.Authorization.Users;
 using PhapY.Roles.Dto;
 using PhapY.Users.Dto;
 using Microsoft.AspNet.Identity;
+using PhapY.Authorization.Dto;
+using PhapY.Authorization.Users.Dto;
 
 namespace PhapY.Users
 {
     [AbpAuthorize(PermissionNames.Pages_Users)]
-    public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedResultRequestDto, CreateUserDto, UpdateUserDto>, IUserAppService
+    public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedResultRequestDto, CreateUserDto, UpdateUserDto>
     {
         private readonly UserManager _userManager;
         private readonly RoleManager _roleManager;
         private readonly IRepository<Role> _roleRepository;
 
         public UserAppService(
-            IRepository<User, long> repository, 
-            UserManager userManager, 
-            IRepository<Role> roleRepository, 
+            IRepository<User, long> repository,
+            UserManager userManager,
+            IRepository<Role> roleRepository,
             RoleManager roleManager)
             : base(repository)
         {
@@ -127,6 +130,24 @@ namespace PhapY.Users
         protected virtual void CheckErrors(IdentityResult identityResult)
         {
             identityResult.CheckErrors(LocalizationManager);
+        }
+        public async Task<GetUserPermissionsForEditOutput> GetUserPermissionsForEdit(EntityDto<long> input)
+        {
+            var user = await _userManager.GetUserByIdAsync(input.Id);
+            var permissions = PermissionManager.GetAllPermissions();
+            var grantedPermissions = await _userManager.GetGrantedPermissionsAsync(user);
+
+            return new GetUserPermissionsForEditOutput
+            {
+                Permissions = permissions.MapTo<List<FlatPermissionDto>>().OrderBy(p => p.DisplayName).ToList(),
+                GrantedPermissionNames = grantedPermissions.Select(p => p.Name).ToList()
+            };
+        }
+        public async Task UpdateUserPermissions(UpdateUserPermissionsInput input)
+        {
+            var user = await _userManager.GetUserByIdAsync(input.Id);
+            var grantedPermissions = PermissionManager.GetPermissionsFromNamesByValidating(input.GrantedPermissionNames);
+            await _userManager.SetGrantedPermissionsAsync(user, grantedPermissions);
         }
     }
 }

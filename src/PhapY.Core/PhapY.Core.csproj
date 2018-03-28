@@ -226,28 +226,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-zh-CN.xml" />
-    <EmbeddedResource Include="Localization\Source\PhapY-tr.xml" />
     <EmbeddedResource Include="Localization\Source\PhapY.xml" />
-    <EmbeddedResource Include="Localization\Source\PhapY-lt.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-pt-BR.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-es.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-fr.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-it.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-ja.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\PhapY-nl-NL.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\Source\PhapY-vi.xml" />

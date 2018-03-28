@@ -1,0 +1,17 @@
+﻿@using PhapY.Web.Models.Common.Modals
+@model PhapY.Models.Users.UserPermissionsEditViewModel
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Permissions")))
+<div class="modal-body">
+    @*@foreach (var permission in Model.Permissions)
+        {
+            <div class="col-sm-6">
+                <input type="checkbox" name="permission" value="@permission.Name" class="filled-in" id="@string.Format("permission{0}",permission.Name)" @(Model.GrantedPermissionNames.Contains(permission.Name)?"checked='checked'":"")/>
+                <label for="@string.Format("permission{0}",permission.Name)">@permission.DisplayName</label>
+            </div>
+        }*@
+    @Html.Partial("~/Views/Common/_PermissionTree.cshtml", Model)
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn default close-button" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" class="btn blue save-button"><i class="fa fa-save"></i> <span>@L("Save")</span></button>
+</div>

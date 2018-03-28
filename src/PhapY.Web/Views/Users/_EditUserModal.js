@@ -1,6 +1,6 @@
 ﻿(function ($) {
 
-    var _userService = abp.services.app.user;
+    var _userService = abp.services.app.customUser;
     var _$modal = $('#UserEditModal');
     var _$form = $('form[name=UserEditForm]');
 
@@ -12,7 +12,7 @@
 
         var user = _$form.serializeFormToObject(); //serializeFormToObject is defined in main.js
         user.roleNames = [];
-        var _$roleCheckboxes = $("input[name='role']:checked");
+        var _$roleCheckboxes = $("#edit-user-roles input[name='role']:checked");
         if (_$roleCheckboxes) {
             for (var roleIndex = 0; roleIndex < _$roleCheckboxes.length; roleIndex++) {
                 var _$roleCheckbox = $(_$roleCheckboxes[roleIndex]);
